@@ -129,11 +129,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\FileDialog\tinyfiledialogs.c" />
+    <ClCompile Include="src\ImageCrop.cpp" />
     <ClCompile Include="src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\bertface.png" />
-    <Image Include="Resources\jerry.jpg" />
+    <Image Include="Resources\Images\back_button_down.png" />
+    <Image Include="Resources\Images\back_button_up.png" />
+    <Image Include="Resources\Images\bertface.png" />
+    <Image Include="Resources\Images\bg.png" />
+    <Image Include="Resources\Images\bgOverlay.png" />
+    <Image Include="Resources\Images\exit_button_down.png" />
+    <Image Include="Resources\Images\exit_button_up.png" />
+    <Image Include="Resources\Images\jerry.jpg" />
+    <Image Include="Resources\Images\mayon.jpg" />
+    <Image Include="Resources\Images\play_button_down.png" />
+    <Image Include="Resources\Images\play_button_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Button.h" />
+    <ClInclude Include="src\FileDialog\tinyfiledialogs.h" />
+    <ClInclude Include="src\ImageCrop.h" />
+    <ClInclude Include="src\Random.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\The Bomb Sound.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

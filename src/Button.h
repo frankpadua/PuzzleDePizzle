@@ -2,6 +2,12 @@
 #include <algorithm>
 #include <raylib.h>
 
+enum ButtonSize {
+	SMALL,
+	MEDIUM,
+	LARGE
+};
+
 class Button {
 private:
 	Image m_buttonUpImage{ nullptr };
@@ -9,18 +15,19 @@ private:
 	Texture2D m_buttonUpTexture{ 0 };
 	Texture2D m_buttonDownTexture{ 0 };
 	Vector2 m_position{ 0 };
-	float m_scale{ 0.0f };
+	ButtonSize m_scale;
 	bool m_doneClick{ false };
 
 public:
-	Button(Image imageButtonUp, Image imageButtonDown, float scale);
+	Button(Image imageButtonUp, Image imageButtonDown, int bgWidth, int bgHeight, ButtonSize scale);
 	~Button();
 
 	void draw(Vector2 position, Vector2 mousePos);
-	float getButtonWidth() const { return m_buttonUpTexture.width * m_scale; }
-	float getButtonHeight() const { return m_buttonUpTexture.height * m_scale; }
+	float getButtonWidth() const { return m_buttonUpTexture.width; }
+	float getButtonHeight() const { return m_buttonUpTexture.height; }
 	int getButtonId() const { return m_buttonUpTexture.id; }
 	void unloadButtonTexture() { UnloadTexture(m_buttonUpTexture); UnloadTexture(m_buttonDownTexture); }
 	bool isPressed();
-	void scaled(float bgWidth, float bgHeight);
+	Image buttonManipulate(Image* buttonImage, float bgWidth, float bgHeight, ButtonSize buttonSize);
+	void scaled(float bgWidth, float bgHeight, ButtonSize buttonSize);
 };

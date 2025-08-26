@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="buttontesting.svg"
+   inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\button_down.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.61176471"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#282828"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0267829"
+     inkscape:cx="360.34881"
+     inkscape:cy="545.87976"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:export-bgcolor="#ffffff00" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="linearGradient12"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#4ad4c9;stop-opacity:1;"
+         offset="0"
+         id="stop11" />
+      <stop
+         style="stop-color:#219487;stop-opacity:1;"
+         offset="1"
+         id="stop12" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#31bdb4;stop-opacity:1;"
+         offset="0.44786611"
+         id="stop8" />
+      <stop
+         style="stop-color:#acfbdf;stop-opacity:1;"
+         offset="1"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient2"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#31bdb4;stop-opacity:1;"
+         offset="0.4089404"
+         id="stop2" />
+      <stop
+         style="stop-color:#acfbdf;stop-opacity:1;"
+         offset="0.67880797"
+         id="stop5" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#31bdb4;stop-opacity:1;"
+         offset="0.44786611"
+         id="stop3" />
+      <stop
+         style="stop-color:#aafbde;stop-opacity:1;"
+         offset="1"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#4ad4c9;stop-opacity:1;"
+         offset="0.32551318"
+         id="stop6" />
+      <stop
+         style="stop-color:#219487;stop-opacity:1;"
+         offset="0.93255132"
+         id="stop7" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4"
+       id="linearGradient7"
+       x1="105.49876"
+       y1="135.73753"
+       x2="105.49876"
+       y2="92.162773"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.7276537,0,0,0.81195315,-27.957811,-71.283507)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient3"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.7276537,0,0,0.81195315,79.237845,-70.510461)"
+       x1="105.49876"
+       y1="135.73753"
+       x2="105.49876"
+       y2="92.162773" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10"
+       id="linearGradient8"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.7276537,0,0,0.81195315,-27.957811,-71.283507)"
+       x1="105.49876"
+       y1="135.73753"
+       x2="105.49876"
+       y2="92.162773" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6"
+       id="linearGradient9"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.7276537,0,0,0.81195315,79.237845,-70.510461)"
+       x1="105.49876"
+       y1="135.73753"
+       x2="105.49876"
+       y2="92.162773" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2"
+       id="linearGradient5"
+       x1="50.766151"
+       y1="133.47662"
+       x2="50.766151"
+       y2="86.58387"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient12"
+       id="linearGradient11"
+       gradientUnits="userSpaceOnUse"
+       x1="50.766151"
+       y1="133.47662"
+       x2="50.766151"
+       y2="86.58387"
+       gradientTransform="translate(97.403745,-0.7730456)" />
+  </defs>
+  <g
+     inkscape:label="Start"
+     inkscape:groupmode="layer"
+     id="g5"
+     style="display:inline">
+    <rect
+       style="fill:url(#linearGradient7);fill-opacity:1;stroke:#000000;stroke-width:2.03371;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4"
+       width="80.876694"
+       height="33.139645"
+       x="8.37041"
+       y="7.1272545"
+       ry="13.758869"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\play_button_up.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'The Bomb Sound';-inkscape-font-specification:'The Bomb Sound, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;stroke-width:2.64583"
+       x="36.808659"
+       y="27.670773"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:2.64583"
+         x="36.808659"
+         y="27.670773">Play</tspan></text>
+    <rect
+       style="fill:url(#linearGradient3);fill-opacity:1;stroke:#000000;stroke-width:2.03371;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5"
+       width="80.876694"
+       height="33.139645"
+       x="115.56606"
+       y="7.9003"
+       ry="13.758869"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\play_button_down.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'The Bomb Sound';-inkscape-font-specification:'The Bomb Sound, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;stroke-width:2.64583"
+       x="144.00432"
+       y="28.443817"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="stroke-width:2.64583"
+         x="144.00432"
+         y="28.443817">Play</tspan></text>
+  </g>
+  <g
+     inkscape:label="Exit"
+     inkscape:groupmode="layer"
+     id="g7"
+     style="display:inline"
+     transform="translate(0,42.002144)">
+    <rect
+       style="fill:url(#linearGradient8);fill-opacity:1;stroke:#000000;stroke-width:2.03371;stroke-dasharray:none;stroke-opacity:1"
+       id="rect6"
+       width="80.876694"
+       height="33.139645"
+       x="8.37041"
+       y="7.1272545"
+       ry="13.758869"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\exit_button_up.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'The Bomb Sound';-inkscape-font-specification:'The Bomb Sound, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;stroke-width:2.64583"
+       x="38.095585"
+       y="27.512718"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="stroke-width:2.64583"
+         x="38.095585"
+         y="27.512718">Exit</tspan></text>
+    <rect
+       style="fill:url(#linearGradient9);fill-opacity:1;stroke:#000000;stroke-width:2.03371;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7"
+       width="80.876694"
+       height="33.139645"
+       x="115.56606"
+       y="7.9003"
+       ry="13.758869"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\exit_button_down.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.2889px;font-family:'The Bomb Sound';-inkscape-font-specification:'The Bomb Sound, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:#000000;stroke-width:2.64583"
+       x="145.29124"
+       y="28.285763"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="stroke-width:2.64583"
+         x="145.29124"
+         y="28.285763">Exit</tspan></text>
+  </g>
+  <rect
+     style="display:inline;fill:#4a4a4a;fill-opacity:0.29291;stroke-width:1.48719"
+     id="rect1"
+     width="109.77248"
+     height="73.439316"
+     x="89.673286"
+     y="220.83336"
+     ry="4.9220438"
+     inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\bgOverlay.png"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Back">
+    <path
+       id="rect2"
+       style="fill:url(#linearGradient5);fill-opacity:1;stroke:#000000;stroke-width:2.17824;stroke-opacity:1"
+       d="m 53.595178,94.86036 -26.275399,15.16962 26.275399,15.17013 v -7.6972 h 17.009815 c 1.998579,0 3.607531,-1.60896 3.607531,-3.60754 v -8.246 c 0,-1.99858 -1.608952,-3.60754 -3.607531,-3.60754 H 53.595178 Z"
+       inkscape:label="BackUp"
+       sodipodi:nodetypes="ccccsssscc"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\back_button_up.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       id="path10"
+       style="fill:url(#linearGradient11);fill-opacity:1;stroke:#000000;stroke-width:2.17824;stroke-opacity:1"
+       d="m 150.99892,94.087314 -26.2754,15.169616 26.2754,15.17013 v -7.6972 h 17.00982 c 1.99858,0 3.60753,-1.60896 3.60753,-3.60754 v -8.246 c 0,-1.99858 -1.60895,-3.60754 -3.60753,-3.60754 h -17.00982 z"
+       inkscape:label="BackDown"
+       inkscape:export-filename="D:\GAME PROJECTS\PuzzleDePizzle\Resources\Images\back_button_down.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+  </g>
+</svg>

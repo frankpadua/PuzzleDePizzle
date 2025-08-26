@@ -27,6 +27,12 @@
     <ClCompile Include="src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\assets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\image_manipulate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\bertface.png">
@@ -76,8 +82,15 @@
     <ClInclude Include="src\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\assets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\image_manipulate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\The Bomb Sound.ttf" />
+    <Font Include="Resources\Font\The Bomb Sound.ttf" />
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 
 void MyImageCrop() {
 	InitWindow(800, 600, "Raylib ROI Selector");
-	ToggleBorderlessWindowed();
+	//ToggleBorderlessWindowed();
 
 	Image image = LoadImage("Resources/bertface.png");
 	Texture2D texture = LoadTextureFromImage(image);

@@ -93,6 +93,7 @@ void Button::draw(Vector2 position, Vector2 mousePos)
 	bool isClicked = isHovered && IsMouseButtonDown(MOUSE_LEFT_BUTTON);
 
 	m_doneClick = isClicked ? true : false;
+
 	Texture2D& texture = isClicked ? m_buttonDownTexture : m_buttonUpTexture;
 
 	DrawTexturePro(texture, source, dest, { 0, 0 }, 0.0f, WHITE);

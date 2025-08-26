@@ -358,7 +358,7 @@ int main()
 
 			case Scene::CROP_SLICE_IMAGE_SCENE: 
 			{
-				backButton.draw({ (currentWindowWidth - myBgTexture.width) / 2 + 10.0f, (currentWindowHeight - myBgTexture.height) + 10.0f }, clickLocation);
+				backButton.draw({ (currentWindowWidth - myBgTexture.width) / 2 + 10.0f, (currentWindowHeight - myBgTexture.height) + 20.0f }, clickLocation);
 				if (myPuzzleTexture.id != 0) {
 					// Draw texture in the middle of the screen
 					DrawTexture(myPuzzleTexture, (currentWindowWidth - myPuzzleTexture.width) / 2, (currentWindowHeight - myPuzzleTexture.height) / 2, WHITE);

@@ -1,5 +1,7 @@
+//#include "assets.h"
 #include "Button.h"
 #include "ImageCrop.h"
+//#include "image_manipulate.h"
 //#include "Random.h"
 #define TINYFILEDIALOGS_IMPLEMENTATION
 #include "FileDialog/tinyfiledialogs.h"
@@ -68,8 +70,8 @@ Image imageManipulate(Image* myImage, ImageType imageType)
 		newHeight = static_cast<int>(Height * scale);
 	}
 	else if (imageType == IMAGE_AS_PUZZLE) {
-		maxWidth = GetScreenWidth() / 1.1f;
-		maxHeight = GetScreenHeight() / 1.1f;
+		maxWidth = GetScreenWidth() / 1.5f;
+		maxHeight = GetScreenHeight() / 1.5f;
 		scaleX = maxWidth / Width;
 		scaleY = maxHeight / Height;
 		scale = std::min(scaleX, scaleY);
@@ -117,9 +119,9 @@ int main()
 
 	// Other resources for the window
 	Image myBgImage{ LoadImage("Resources/Images/bg.png") };
-	Texture2D myBgTexture{ LoadTextureFromImage(imageManipulate(&myBgImage, IMAGE_AS_BG)) };
+	Texture2D myBgTexture{ LoadTextureFromImage(myBgImage) };
 	Image myBgImageOverlay{ LoadImage("Resources/Images/bgOverlay.png") };
-	Texture2D myBgTextureOverlay{ LoadTextureFromImage(imageManipulate(&myBgImageOverlay, IMAGE_AS_BG_OVERLAY)) };
+	Texture2D myBgTextureOverlay{ LoadTextureFromImage(myBgImageOverlay) };
 
 	// Buttons
 	Button startButton{ LoadImage("Resources/Images/play_button_up.png"), LoadImage("Resources/Images/play_button_down.png"), myBgTexture.width, myBgTexture.height, MEDIUM };
@@ -129,11 +131,11 @@ int main()
 	// Game resources
 	// Images
 	Image puzzleImage1{ LoadImage("Resources/Images/bertface.png") };
-	Texture2D puzzleImage1Texture{ LoadTextureFromImage(imageManipulate(&puzzleImage1, IMAGE_AS_ICON)) };
+	Texture2D puzzleImage1Texture{ LoadTextureFromImage(puzzleImage1) };
 	Image puzzleImage2{ LoadImage("Resources/Images/jerry.jpg") };
-	Texture2D puzzleImage2Texture{ LoadTextureFromImage(imageManipulate(&puzzleImage2, IMAGE_AS_ICON)) };
+	Texture2D puzzleImage2Texture{ LoadTextureFromImage(puzzleImage2) };
 	Image puzzleImage3{ LoadImage("Resources/Images/mayon.jpg") };
-	Texture2D puzzleImage3Texture{ LoadTextureFromImage(imageManipulate(&puzzleImage3, IMAGE_AS_ICON)) };
+	Texture2D puzzleImage3Texture{ LoadTextureFromImage(puzzleImage3) };
 
 	// Font
 	float fontSizeLarge{ 70.0f };
@@ -145,14 +147,14 @@ int main()
 
 	// Texts
 	Image txt_ChooseImage{ ImageTextEx(myFontLarge, "Choose Image", fontSizeLarge, fontSpacing, BLACK) };
-	Texture2D txt_ChooseImage_texture{ LoadTextureFromImage(imageManipulate(&txt_ChooseImage, IMAGE_AS_ICON)) };
+	Texture2D txt_ChooseImage_texture{ LoadTextureFromImage(txt_ChooseImage) };
 
 	Image puzImg1Txt{ ImageTextEx(myFontLarge, "Bert Face", fontSizeLarge, fontSpacing, BLACK) };
-	Texture2D puzImg1Txt_texture{ LoadTextureFromImage(imageManipulate(&puzImg1Txt, IMAGE_AS_ICON)) };
+	Texture2D puzImg1Txt_texture{ LoadTextureFromImage(puzImg1Txt) };
 	Image puzImg2Txt{ ImageTextEx(myFontLarge, "High Jerry", fontSizeLarge, fontSpacing, BLACK) };
-	Texture2D puzImg2Txt_texture{ LoadTextureFromImage(imageManipulate(&puzImg2Txt, IMAGE_AS_ICON)) };
+	Texture2D puzImg2Txt_texture{ LoadTextureFromImage(puzImg2Txt) };
 	Image puzImg3Txt{ ImageTextEx(myFontLarge, "Mayon", fontSizeLarge, fontSpacing, BLACK) };
-	Texture2D puzImg3Txt_texture{ LoadTextureFromImage(imageManipulate(&puzImg3Txt, IMAGE_AS_ICON)) };
+	Texture2D puzImg3Txt_texture{ LoadTextureFromImage(puzImg3Txt) };
 	
 
 	// THE IMAGE PUZZLE ITSELF AND ITS VARIABLES
@@ -182,7 +184,7 @@ int main()
 
 
 		// Clicking functionality
-		if (startButton.isPressed() && IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+		if (startButton.isPressed() && IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && currentScene == Scene::MENU_SCENE) {
 			currentScene = Scene::CHOOSE_IMAGE_SCENE;
 		}
 		if (backButton.isPressed() && IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && currentScene == Scene::CHOOSE_IMAGE_SCENE) {
@@ -202,12 +204,17 @@ int main()
 				currentScene = Scene::CROP_SLICE_IMAGE_SCENE;
 			}
 		}
-
+		if (backButton.isPressed() && IsMouseButtonReleased(MOUSE_LEFT_BUTTON) && currentScene == Scene::CROP_SLICE_IMAGE_SCENE) {
+			if (myPuzzleTexture.id != 0) {
+				UnloadTexture(myPuzzleTexture);
+			}
+			currentScene = Scene::CHOOSE_IMAGE_SCENE;
+		}
 
 		// Resize the texture and maintain quality if the screen dimension is updated
 		if (currentWindowWidth != GetScreenWidth() || currentWindowHeight != GetScreenHeight())
 		{
-			if(myPuzzleImage.data != nullptr)		// If resizing window happens before import or when no image yet
+			if(myPuzzleImage.data != nullptr)
 			{
 				if (myPuzzleTexture.id != 0) {
 					UnloadTexture(myPuzzleTexture);
@@ -351,15 +358,17 @@ int main()
 
 			case Scene::CROP_SLICE_IMAGE_SCENE: 
 			{
-				
+				backButton.draw({ (currentWindowWidth - myBgTexture.width) / 2 + 10.0f, (currentWindowHeight - myBgTexture.height) + 10.0f }, clickLocation);
+				if (myPuzzleTexture.id != 0) {
+					// Draw texture in the middle of the screen
+					DrawTexture(myPuzzleTexture, (currentWindowWidth - myPuzzleTexture.width) / 2, (currentWindowHeight - myPuzzleTexture.height) / 2, WHITE);
+				}
+				hoovered1 = false;
+				hoovered2 = false;
+				hoovered3 = false;
 			} break;
 		}
-
-		if (myPuzzleTexture.id != 0) {
-			DrawCircle(50, 50, 50, ORANGE);
-			// Draw texture in the middle of the screen
-			DrawTexture(myPuzzleTexture, (currentWindowWidth - myPuzzleTexture.width) / 2, (currentWindowHeight - myPuzzleTexture.height) / 2, WHITE);
-		}
+		std::cout << static_cast<int>(currentScene) << '\n';
 
 		EndDrawing();
 	}

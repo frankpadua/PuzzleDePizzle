@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <iostream>
 #include <raylib.h>
 
 enum ButtonSize {

@@ -12,13 +12,20 @@ enum class Scene {
 enum ImageType {
 	IMAGE_AS_BG,
 	IMAGE_AS_BG_OVERLAY,
-	IMAGE_AS_FONT,
 	IMAGE_AS_ICON,
 	IMAGE_AS_PUZZLE
 };
 
 inline namespace Assets
 {
-	inline constexpr int screenHeight{ 720 };
-	inline constexpr int screenWidth{ 1280 };
+	//inline constexpr int screenHeight{ 720 };
+	//inline constexpr int screenWidth{ 1280 };
+	//
+	//inline int currentWindowWidth{};
+	//inline int currentWindowHeight{};
+	//
+	//inline Scene currentScene{};
+	//
+	//inline void loadAll();
+	//inline void unloadAll();
 }

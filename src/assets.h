@@ -1,31 +1,51 @@
 #pragma once
-#include <raylib.h>
 
-enum class Scene {
-	LOADING_SCENE,
-	MENU_SCENE,						// Display menu (Play, Exit)
-	BEGIN_PLAY_SCENE,				// Begin playing the puzzle (all animation included)
-	CHOOSE_IMAGE_SCENE,				// Show scene on choosing image (built-in, custom)
-	CROP_SLICE_IMAGE_SCENE,			// Square, Portrait, Landscape (3x3, 4x4, 5x5, ... 3x4, 3x5, 3x6, ... etc)
+#include "config.h"
+#include "Button.h"
+
+struct Assets {
+	// Backgrounds
+	Image myBgImage;
+	Texture2D myBgTexture;
+	Image myBgImageOverlay;
+	Texture2D myBgTextureOverlay;
+
+	// Built-in puzzle image
+	Image puzzleImage1;
+	Texture2D puzzleImage1Texture;
+	Image puzzleImage2;
+	Texture2D puzzleImage2Texture;
+	Image puzzleImage3;
+	Texture2D puzzleImage3Texture;
+
+	// Font
+	Font myFontLarge;
+	Font myFontSmall;
+
+	// Text to Image
+	Image txt_ChooseImage;
+	Texture2D txt_ChooseImage_texture;
+	Image puzImg1Txt;
+	Texture2D puzImg1Txt_texture;
+	Image puzImg2Txt;
+	Texture2D puzImg2Txt_texture;
+	Image puzImg3Txt;
+	Texture2D puzImg3Txt_texture;
+
+	// THE IMAGE PUZZLE
+	Image myPuzzleImage;
+	Texture2D myPuzzleTexture;
 };
 
-enum ImageType {
-	IMAGE_AS_BG,
-	IMAGE_AS_BG_OVERLAY,
-	IMAGE_AS_ICON,
-	IMAGE_AS_PUZZLE
-};
+extern Assets ga;
 
-inline namespace Assets
-{
-	//inline constexpr int screenHeight{ 720 };
-	//inline constexpr int screenWidth{ 1280 };
-	//
-	//inline int currentWindowWidth{};
-	//inline int currentWindowHeight{};
-	//
-	//inline Scene currentScene{};
-	//
-	//inline void loadAll();
-	//inline void unloadAll();
+void LoadAssets();
+void UnloadAssets();
+
+namespace gA {
+	extern Button startButton;
+	extern Button exitButton;
+	extern Button backButton;
+
+	void LoadClassedAssets();
 }

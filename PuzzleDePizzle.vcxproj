@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="src\assets.cpp" />
     <ClCompile Include="src\Button.cpp" />
+    <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\FileDialog\tinyfiledialogs.c" />
     <ClCompile Include="src\ImageCrop.cpp" />
     <ClCompile Include="src\image_manipulate.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="src\assets.h" />
     <ClInclude Include="src\Button.h" />
+    <ClInclude Include="src\config.h" />
     <ClInclude Include="src\FileDialog\tinyfiledialogs.h" />
     <ClInclude Include="src\ImageCrop.h" />
     <ClInclude Include="src\image_manipulate.h" />

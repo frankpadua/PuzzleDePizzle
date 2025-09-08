@@ -136,6 +136,8 @@
     <ClCompile Include="src\ImageCrop.cpp" />
     <ClCompile Include="src\image_manipulate.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\texture_location.cpp" />
+    <ClCompile Include="src\transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Images\back_button_down.png" />
@@ -158,6 +160,8 @@
     <ClInclude Include="src\ImageCrop.h" />
     <ClInclude Include="src\image_manipulate.h" />
     <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\texture_location.h" />
+    <ClInclude Include="src\transform.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Resources\Fonts\The Bomb Sound.ttf" />

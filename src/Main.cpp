@@ -1,7 +1,9 @@
 #include "assets.h"
 #include "ImageCrop.h"
-//#include "image_manipulate.h"
 //#include "Random.h"
+#include "texture_location.h"
+#include "transform.h"
+
 #define TINYFILEDIALOGS_IMPLEMENTATION
 #include "FileDialog/tinyfiledialogs.h"
 
@@ -12,68 +14,6 @@
 #include <typeinfo>
 #include <vector>
 #include <raylib.h>
-
-Image imageManipulate(Image* myImage, ImageType imageType)
-{
-	int Width = myImage->width;
-	int Height = myImage->height;
-
-	// target size
-	float maxWidth{};
-	float maxHeight{};
-	// Compute scale ratio while preserving aspect ratio
-	float scaleX{};
-	float scaleY{};
-	float scale{};
-	// New dimensions
-	int newWidth{};
-	int newHeight{};
-
-	if (imageType == IMAGE_AS_ICON) {
-		maxWidth = GetScreenWidth() / 5.0f;
-		maxHeight = GetScreenHeight() / 5.0f;
-		scaleX = maxWidth / Width;
-		scaleY = maxHeight / Height;
-		scale = std::min(scaleX, scaleY);
-
-		newWidth = static_cast<int>(Width * scale);
-		newHeight = static_cast<int>(Height * scale);
-	}
-	else if (imageType == IMAGE_AS_BG_OVERLAY) {
-		maxWidth = GetScreenWidth() / 1.3f;
-		maxHeight = GetScreenHeight() / 1.3f;
-		scaleX = maxWidth / Width;
-		scaleY = maxHeight / Height;
-		scale = std::min(scaleX, scaleY);
-
-		newWidth = static_cast<int>(Width * scale);
-		newHeight = static_cast<int>(Height * scale);
-	}
-	else if (imageType == IMAGE_AS_PUZZLE) {
-		maxWidth = GetScreenWidth() / 1.5f;
-		maxHeight = GetScreenHeight() / 1.5f;
-		scaleX = maxWidth / Width;
-		scaleY = maxHeight / Height;
-		scale = std::min(scaleX, scaleY);
-
-		newWidth = static_cast<int>(Width * scale);
-		newHeight = static_cast<int>(Height * scale);
-	}
-	else {
-		maxWidth = GetScreenWidth();
-		maxHeight = GetScreenHeight();
-		scaleX = maxWidth / Width;
-		scaleY = maxHeight / Height;
-		scale = std::min(scaleX, scaleY);
-
-		newWidth = static_cast<int>(Width * scale);
-		newHeight = static_cast<int>(Height * scale);
-	}
-
-	ImageResize(myImage, newWidth, newHeight);
-
-	return *myImage;
-}
 
 void theImagePuzzle(Image& myPuzzleImage, const Image& myImageChoosen, Texture& myPuzzleTexture)
 {
@@ -94,11 +34,41 @@ int main()
 	LoadAssets();
 	gA::LoadClassedAssets();
 
+	bool draw_guide{ false };
+
+	float sliceX = 0;
+	float sliceY = 0;
+	float sliceWidth = 100;
+	float sliceHeight = 100;
+
+	Rectangle tile = {
+		sliceX,
+		sliceY,
+		sliceWidth,
+		sliceHeight
+	};
+
+	std::vector<Rectangle> rec3b3{};
+	rec3b3.reserve(9);
+	bool doneDrawing = false;
+
+	for (int col{ 0 }; col < 3; ++col) {
+		for (int row{ 0 }; row < 3; ++row) {
+			rec3b3.emplace_back(tile);
+			tile.x += tile.width;
+		}
+		tile.x = 0;
+		tile.y += tile.height;
+	}
+
 	while (!WindowShouldClose())
 	{
 		// MouseClickLocation
 		gc.clickLocation = GetMousePosition();
-		
+
+		// Get the texture shapes and location
+		getShapes();
+
 		// LOCKING/UNLOCKING RESIZE WINDOW
 		if (IsKeyPressed(KEY_R))
 		{
@@ -106,6 +76,11 @@ int main()
 				ClearWindowState(FLAG_WINDOW_RESIZABLE);
 			}
 			else SetWindowState(FLAG_WINDOW_RESIZABLE);
+		}
+		if (IsKeyPressed(KEY_G))
+		{
+			if (draw_guide)		draw_guide = false;
+			else                draw_guide = true;
 		}
 
 		// Clicking functionality
@@ -150,69 +125,31 @@ int main()
 		// Resize the texture and maintain quality if the screen dimension is updated
 		if (gc.currentWindowWidth != GetScreenWidth() || gc.currentWindowHeight != GetScreenHeight())
 		{
-			if(ga.myPuzzleImage.data != nullptr)
-			{
-				if (ga.myPuzzleTexture.id != 0) {
-					UnloadTexture(ga.myPuzzleTexture);
-				}
+			// The choosed image
+			textureTransform(ga.myPuzzleImage, ga.myPuzzleTexture, IMAGE_AS_PUZZLE);
 
-				Image temp = ImageCopy(ga.myPuzzleImage);
-				ga.myPuzzleTexture = LoadTextureFromImage(imageManipulate(&temp, IMAGE_AS_PUZZLE));
-				UnloadImage(temp);
-			}
+			// BG and BG Overlay
+			textureTransform(ga.myBgImage, ga.myBgTexture, IMAGE_AS_BG);
+			textureTransform(ga.myBgImageOverlay, ga.myBgTextureOverlay, IMAGE_AS_BG_OVERLAY);
 
-			//	For background image
-			if (ga.myBgTexture.id != 0) {
-				UnloadTexture(ga.myBgTexture);
-			}
-			Image bgTemp = ImageCopy(ga.myBgImage);
-			ga.myBgTexture = LoadTextureFromImage(imageManipulate(&bgTemp, IMAGE_AS_BG));
-			UnloadImage(bgTemp);
-			Image bgOverlayTemp = ImageCopy(ga.myBgImageOverlay);
-			ga.myBgTextureOverlay = LoadTextureFromImage(imageManipulate(&bgOverlayTemp, IMAGE_AS_BG_OVERLAY));
-			UnloadImage(bgOverlayTemp);
+			// The built-in puzzle images
+			textureTransform(ga.puzzleImage1, ga.puzzleImage1Texture, IMAGE_AS_ICON);
+			textureTransform(ga.puzzleImage2, ga.puzzleImage2Texture, IMAGE_AS_ICON);
+			textureTransform(ga.puzzleImage3, ga.puzzleImage3Texture, IMAGE_AS_ICON);
 
-			// For Icons
-			if (ga.puzzleImage1Texture.id != 0) {
-				UnloadTexture(ga.puzzleImage1Texture);
-				UnloadTexture(ga.puzzleImage2Texture);
-				UnloadTexture(ga.puzzleImage3Texture);
-			}
-			Image puzIconTemp = ImageCopy(ga.puzzleImage1);
-			ga.puzzleImage1Texture = LoadTextureFromImage(imageManipulate(&puzIconTemp, IMAGE_AS_ICON));
-			UnloadImage(puzIconTemp);
-			puzIconTemp = ImageCopy(ga.puzzleImage2);
-			ga.puzzleImage2Texture = LoadTextureFromImage(imageManipulate(&puzIconTemp, IMAGE_AS_ICON));
-			UnloadImage(puzIconTemp);
-			puzIconTemp = ImageCopy(ga.puzzleImage3);
-			ga.puzzleImage3Texture = LoadTextureFromImage(imageManipulate(&puzIconTemp, IMAGE_AS_ICON));
-			UnloadImage(puzIconTemp);
+			// Text as images
+			// Choose Image Scene
+			textureTransform(ga.txt_ChooseImage, ga.txt_ChooseImage_texture, IMAGE_AS_ICON);
+			textureTransform(ga.puzImg1Txt, ga.puzImg1Txt_texture, IMAGE_AS_ICON);
+			textureTransform(ga.puzImg2Txt, ga.puzImg2Txt_texture, IMAGE_AS_ICON);
+			textureTransform(ga.puzImg3Txt, ga.puzImg3Txt_texture, IMAGE_AS_ICON);
 
 			// Buttons
 			gA::startButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
 			gA::exitButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
 			gA::backButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
 
-			// Texts
-			if (ga.txt_ChooseImage_texture.id != 0) {
-				UnloadTexture(ga.txt_ChooseImage_texture);
-				UnloadTexture(ga.puzImg1Txt_texture);
-				UnloadTexture(ga.puzImg2Txt_texture);
-				UnloadTexture(ga.puzImg3Txt_texture);
-			}
-			Image tempText = ImageCopy(ga.txt_ChooseImage);
-			ga.txt_ChooseImage_texture = LoadTextureFromImage(imageManipulate(&tempText, IMAGE_AS_ICON));
-			UnloadImage(tempText);
-			tempText = ImageCopy(ga.puzImg1Txt);
-			ga.puzImg1Txt_texture = LoadTextureFromImage(imageManipulate(&tempText, IMAGE_AS_ICON));
-			UnloadImage(tempText);
-			tempText = ImageCopy(ga.puzImg2Txt);
-			ga.puzImg2Txt_texture = LoadTextureFromImage(imageManipulate(&tempText, IMAGE_AS_ICON));
-			UnloadImage(tempText);
-			tempText = ImageCopy(ga.puzImg3Txt);
-			ga.puzImg3Txt_texture = LoadTextureFromImage(imageManipulate(&tempText, IMAGE_AS_ICON));
-			UnloadImage(tempText);
-			
+			// Then assign to current window resolution
 			gc.currentWindowWidth = GetScreenWidth();
 			gc.currentWindowHeight = GetScreenHeight();
 		}
@@ -235,19 +172,21 @@ int main()
 				ga.myPuzzleTexture = LoadTextureFromImage(imageManipulate(&ga.myPuzzleImage, IMAGE_AS_PUZZLE));
 			}
 		}
-		
-		// Built-In Image Puzzle Selection
-		Rectangle puz1ImgLoc = { ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), ga.myBgTextureOverlay.width, ga.puzzleImage1Texture.height };
-		Rectangle puz2ImgLoc = { ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), ga.myBgTextureOverlay.width, ga.puzzleImage2Texture.height };
-		Rectangle puz3ImgLoc = { ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + (ga.puzzleImage2Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), ga.myBgTextureOverlay.width, ga.puzzleImage3Texture.height };
-		
+
+
 		// DISPLAY EVERYTHING HERE NOW
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		DrawTexture(ga.myBgTexture, (gc.currentWindowWidth - ga.myBgTexture.width) / 2, (gc.currentWindowHeight - ga.myBgTexture.height) / 2, RAYWHITE);
+		// The background image
+		DrawTexture(ga.myBgTexture, tl.bg.x, tl.bg.y, RAYWHITE);
 
 		DrawText("Press [I] to import an image", 10, 10, 20, DARKGRAY);
+
+
+		for (const auto& r : rec3b3) {
+			DrawRectangleLinesEx(r, 4.0f, BLUE);
+		}
 
 		switch (gc.currentScene)
 		{
@@ -255,25 +194,30 @@ int main()
 			{
 				gA::startButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::startButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) }, gc.clickLocation);
 				gA::exitButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::exitButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) + (gA::startButton.getButtonHeight() * 1.1f) }, gc.clickLocation);
+
+				if (draw_guide) {
+					DrawRectangleLinesEx(tl.bg, 10.0f, RED);
+				}
 			} break;
 
 			case Scene::CHOOSE_IMAGE_SCENE: 
 			{
-				DrawTexture(ga.myBgTextureOverlay, (gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2, (gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2, WHITE);
-				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, (gc.currentWindowHeight - ga.myBgTexture.height) + 10.0f }, gc.clickLocation);
 
-				DrawTexture(ga.txt_ChooseImage_texture, (ga.myBgTextureOverlay.width / 2) - (ga.txt_ChooseImage_texture.width / 2) + ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2), ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2) - (ga.txt_ChooseImage_texture.height / 2), WHITE);
+				DrawTexture(ga.myBgTextureOverlay, tl.bg_o.x, tl.bg_o.y, WHITE);
+				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, tl.bg.y + 10.0f }, gc.clickLocation);
 
-				if (gc.clickLocation.x >= puz1ImgLoc.x && gc.clickLocation.x < (puz1ImgLoc.x + puz1ImgLoc.width) && gc.clickLocation.y >= puz1ImgLoc.y && gc.clickLocation.y < (puz1ImgLoc.y + ga.puzzleImage1Texture.height)) {
-					DrawRectangle((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2, puz1ImgLoc.y, ga.myBgTextureOverlay.width, ga.puzzleImage1Texture.height, YELLOW);
+				DrawTexture(ga.txt_ChooseImage_texture, tl.bg_o.x + (tl.bg_o.width / 2) - (ga.txt_ChooseImage_texture.width / 2.0f), tl.bg_o.y - (ga.txt_ChooseImage_texture.height / 2.0f), WHITE);
+
+				if (gc.clickLocation.x >= tl.icon1sel.x && gc.clickLocation.x < (tl.icon1sel.x + tl.icon1sel.width) && gc.clickLocation.y >= tl.icon1sel.y && gc.clickLocation.y < (tl.icon1.y + tl.icon1sel.height)) {
+					DrawRectangleRec(tl.icon1sel, SKYBLUE);
 					gc.puz1hover = true;
 				}
-				else if (gc.clickLocation.x >= puz2ImgLoc.x && gc.clickLocation.x < (puz2ImgLoc.x + puz2ImgLoc.width) && gc.clickLocation.y >= puz2ImgLoc.y && gc.clickLocation.y < (puz2ImgLoc.y + ga.puzzleImage2Texture.height)) {
-					DrawRectangle((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2, puz2ImgLoc.y, ga.myBgTextureOverlay.width, ga.puzzleImage2Texture.height, YELLOW);
+				else if (gc.clickLocation.x >= tl.icon2sel.x && gc.clickLocation.x < (tl.icon2sel.x + tl.icon2sel.width) && gc.clickLocation.y >= tl.icon2sel.y && gc.clickLocation.y < (tl.icon2.y + tl.icon2sel.height)) {
+					DrawRectangleRec(tl.icon2sel, YELLOW);
 					gc.puz2hover = true;
 				}
-				else if (gc.clickLocation.x >= puz3ImgLoc.x && gc.clickLocation.x < (puz3ImgLoc.x + puz3ImgLoc.width) && gc.clickLocation.y >= puz3ImgLoc.y && gc.clickLocation.y < (puz3ImgLoc.y + ga.puzzleImage3Texture.height)) {
-					DrawRectangle((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2, puz3ImgLoc.y, ga.myBgTextureOverlay.width, ga.puzzleImage3Texture.height, YELLOW);
+				else if (gc.clickLocation.x >= tl.icon3sel.x && gc.clickLocation.x < (tl.icon3sel.x + tl.icon3sel.width) && gc.clickLocation.y >= tl.icon3sel.y && gc.clickLocation.y < (tl.icon3.y + tl.icon3sel.height)) {
+					DrawRectangleRec(tl.icon3sel, GREEN);
 					gc.puz3hover = true;
 				}
 				else {
@@ -283,20 +227,27 @@ int main()
 				}
 				
 				// Icons
-				DrawTexture(ga.puzzleImage1Texture, (ga.myBgTextureOverlay.width * 0.1f) + ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), WHITE);
-				DrawTexture(ga.puzzleImage2Texture, (ga.myBgTextureOverlay.width * 0.1f) + ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), WHITE);
-				DrawTexture(ga.puzzleImage3Texture, (ga.myBgTextureOverlay.width * 0.1f) + ((gc.currentWindowWidth - ga.myBgTextureOverlay.width) / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + (ga.puzzleImage2Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), WHITE);
+				DrawTexture(ga.puzzleImage1Texture, tl.icon1.x, tl.icon1.y, WHITE);
+				DrawTexture(ga.puzzleImage2Texture, tl.icon3.x, tl.icon2.y, WHITE);
+				DrawTexture(ga.puzzleImage3Texture, tl.icon3.x, tl.icon3.y, WHITE);
 				
 				// Texts
-				DrawTexture(ga.puzImg1Txt_texture, (gc.currentWindowWidth / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), BLACK);
-				DrawTexture(ga.puzImg2Txt_texture, (gc.currentWindowWidth / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), BLACK);
-				DrawTexture(ga.puzImg3Txt_texture, (gc.currentWindowWidth / 2.0f), (ga.myBgTextureOverlay.height * 0.1f) + (ga.puzzleImage1Texture.height * 1.05f) + (ga.puzzleImage2Texture.height * 1.05f) + ((gc.currentWindowHeight - ga.myBgTextureOverlay.height) / 2.0f), BLACK);
+				DrawTexture(ga.puzImg1Txt_texture, (tl.bg_o.x + (tl.bg_o.width / 2.0f)), (tl.icon1.y + (tl.icon1.height / 2.0f)) - (ga.puzImg1Txt_texture.height / 2.0f), BLACK);
+				DrawTexture(ga.puzImg2Txt_texture, (tl.bg_o.x + (tl.bg_o.width / 2.0f)), (tl.icon2.y + (tl.icon2.height / 2.0f)) - (ga.puzImg2Txt_texture.height / 2.0f), BLACK);
+				DrawTexture(ga.puzImg3Txt_texture, (tl.bg_o.x + (tl.bg_o.width / 2.0f)), (tl.icon3.y + (tl.icon3.height / 2.0f)) - (ga.puzImg3Txt_texture.height / 2.0f), BLACK);
 
+				if (draw_guide) {
+					DrawRectangleLinesEx(tl.bg_o, 3.0f, RED);
+
+					DrawRectangleLinesEx(tl.icon1, 3.0f, RED);
+					DrawRectangleLinesEx(tl.icon1sel, 3.0f, RED);
+					DrawRectangleLinesEx(tl.icon3sel, 3.0f, RED);
+				}
 			} break;
 
 			case Scene::CROP_SLICE_IMAGE_SCENE: 
 			{
-				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, (gc.currentWindowHeight - ga.myBgTexture.height) + 10.0f }, gc.clickLocation);
+				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, tl.bg.y + 10.0f }, gc.clickLocation);
 				if (ga.myPuzzleTexture.id != 0) {
 					// Draw texture in the middle of the screen
 					DrawTexture(ga.myPuzzleTexture, (gc.currentWindowWidth - ga.myPuzzleTexture.width) / 2, (gc.currentWindowHeight - ga.myPuzzleTexture.height) / 2, WHITE);
@@ -304,6 +255,7 @@ int main()
 				gc.puz1hover = false;
 				gc.puz2hover = false;
 				gc.puz3hover = false;
+
 			} break;
 		}
 
@@ -311,7 +263,6 @@ int main()
 	}
 
 	UnloadAssets();
-
 
 	CloseWindow();
 

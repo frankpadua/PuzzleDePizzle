@@ -151,6 +151,14 @@
     <Image Include="Resources\Images\mayon.jpg" />
     <Image Include="Resources\Images\play_button_down.png" />
     <Image Include="Resources\Images\play_button_up.png" />
+    <Image Include="Resources\Images\start_button_down.png" />
+    <Image Include="Resources\Images\start_button_up.png" />
+    <Image Include="Resources\Images\tog_aud_disabled.png" />
+    <Image Include="Resources\Images\tog_aud_down.png" />
+    <Image Include="Resources\Images\tog_aud_up.png" />
+    <Image Include="Resources\Images\tog_music_disabled.png" />
+    <Image Include="Resources\Images\tog_music_down.png" />
+    <Image Include="Resources\Images\tog_music_up.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\assets.h" />

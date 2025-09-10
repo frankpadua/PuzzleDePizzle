@@ -41,6 +41,14 @@ void getShapes()
 	// Relocation of icons
 	tl.icon1.y = ((tl.bg_o.y + tl.icon2.y) / 2.0f) - (tl.icon1.height / 2.0f);
 	tl.icon3.y = ((tl.bg_o.y + tl.bg_o.height + tl.icon2.y + tl.icon2.height) / 2.0f) - (tl.icon1.height / 2.0f);
+
+	// Puzzle image
+	tl.p_image = {
+		tl.bg.x + (tl.bg.width / 2) - (ga.myPuzzleTexture.width / 2),
+		tl.bg.y + (tl.bg.height / 2) - (ga.myPuzzleTexture.height /2),
+		static_cast<float>(ga.myPuzzleTexture.width),
+		static_cast<float>(ga.myPuzzleTexture.height)
+	};
 	
 	// Other shapes
 	tl.icon1sel = {

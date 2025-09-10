@@ -1,5 +1,4 @@
 #include "assets.h"
-#include "ImageCrop.h"
 //#include "Random.h"
 #include "texture_location.h"
 #include "transform.h"
@@ -21,6 +20,35 @@ void theImagePuzzle(Image& myPuzzleImage, const Image& myImageChoosen, Texture& 
 	myPuzzleTexture = LoadTextureFromImage(imageManipulate(&myPuzzleImage, IMAGE_AS_PUZZLE));
 }
 
+enum SliceAmount {
+	THREE_BY_THREE,
+	FOUR_BY_FOUR,
+	FIVE_BY_FIVE,
+	SIX_BY_SIX,
+	SEVEN_BY_SEVEN,
+	EIGHT_BY_EIGHT,
+	NINE_BY_NINE,
+	TEN_BY_TEN,
+};
+
+// Generate a grid of rectangles
+std::vector<Rectangle> GenerateGrid(int cols, int rows, float startX, float startY, float tileWidth, float tileHeight) {
+    std::vector<Rectangle> grid;
+    grid.reserve(cols * rows);
+
+    for (int row = 0; row < rows; ++row) {
+        for (int col = 0; col < cols; ++col) {
+            grid.push_back({
+                startX + col * tileWidth,
+                startY + row * tileHeight,
+                tileWidth,
+                tileHeight
+            });
+        }
+    }
+    return grid;
+}
+
 int main()
 {
 	SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
@@ -35,31 +63,6 @@ int main()
 	gA::LoadClassedAssets();
 
 	bool draw_guide{ false };
-
-	float sliceX = 0;
-	float sliceY = 0;
-	float sliceWidth = 100;
-	float sliceHeight = 100;
-
-	Rectangle tile = {
-		sliceX,
-		sliceY,
-		sliceWidth,
-		sliceHeight
-	};
-
-	std::vector<Rectangle> rec3b3{};
-	rec3b3.reserve(9);
-	bool doneDrawing = false;
-
-	for (int col{ 0 }; col < 3; ++col) {
-		for (int row{ 0 }; row < 3; ++row) {
-			rec3b3.emplace_back(tile);
-			tile.x += tile.width;
-		}
-		tile.x = 0;
-		tile.y += tile.height;
-	}
 
 	while (!WindowShouldClose())
 	{
@@ -87,7 +90,7 @@ int main()
 		// SCENE 1
 		if (gc.currentScene == Scene::MENU_SCENE) {
 			// Scene 1-2 switch
-			if (gA::startButton.isPressed()) {
+			if (gA::playButton.isPressed()) {
 				gc.currentScene = Scene::CHOOSE_IMAGE_SCENE;
 			}
 		}
@@ -123,36 +126,8 @@ int main()
 		}
 
 		// Resize the texture and maintain quality if the screen dimension is updated
-		if (gc.currentWindowWidth != GetScreenWidth() || gc.currentWindowHeight != GetScreenHeight())
-		{
-			// The choosed image
-			textureTransform(ga.myPuzzleImage, ga.myPuzzleTexture, IMAGE_AS_PUZZLE);
+		transformTextures();
 
-			// BG and BG Overlay
-			textureTransform(ga.myBgImage, ga.myBgTexture, IMAGE_AS_BG);
-			textureTransform(ga.myBgImageOverlay, ga.myBgTextureOverlay, IMAGE_AS_BG_OVERLAY);
-
-			// The built-in puzzle images
-			textureTransform(ga.puzzleImage1, ga.puzzleImage1Texture, IMAGE_AS_ICON);
-			textureTransform(ga.puzzleImage2, ga.puzzleImage2Texture, IMAGE_AS_ICON);
-			textureTransform(ga.puzzleImage3, ga.puzzleImage3Texture, IMAGE_AS_ICON);
-
-			// Text as images
-			// Choose Image Scene
-			textureTransform(ga.txt_ChooseImage, ga.txt_ChooseImage_texture, IMAGE_AS_ICON);
-			textureTransform(ga.puzImg1Txt, ga.puzImg1Txt_texture, IMAGE_AS_ICON);
-			textureTransform(ga.puzImg2Txt, ga.puzImg2Txt_texture, IMAGE_AS_ICON);
-			textureTransform(ga.puzImg3Txt, ga.puzImg3Txt_texture, IMAGE_AS_ICON);
-
-			// Buttons
-			gA::startButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
-			gA::exitButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
-			gA::backButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
-
-			// Then assign to current window resolution
-			gc.currentWindowWidth = GetScreenWidth();
-			gc.currentWindowHeight = GetScreenHeight();
-		}
 		// Testing import
 		if (IsKeyPressed(KEY_I)) {
 			const char* filepath = tinyfd_openFileDialog(
@@ -173,6 +148,7 @@ int main()
 			}
 		}
 
+		auto rec3b3 = GenerateGrid(3, 3, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.333f), (tl.p_image.height * 0.333f));
 
 		// DISPLAY EVERYTHING HERE NOW
 		BeginDrawing();
@@ -183,17 +159,12 @@ int main()
 
 		DrawText("Press [I] to import an image", 10, 10, 20, DARKGRAY);
 
-
-		for (const auto& r : rec3b3) {
-			DrawRectangleLinesEx(r, 4.0f, BLUE);
-		}
-
 		switch (gc.currentScene)
 		{
 			case Scene::MENU_SCENE: 
 			{
-				gA::startButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::startButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) }, gc.clickLocation);
-				gA::exitButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::exitButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) + (gA::startButton.getButtonHeight() * 1.1f) }, gc.clickLocation);
+				gA::playButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::playButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) }, gc.clickLocation);
+				gA::exitButton.draw({ (gc.currentWindowWidth / 2.0f) - (gA::exitButton.getButtonWidth() / 2.0f), (gc.currentWindowHeight / 1.9f) + (gA::playButton.getButtonHeight() * 1.1f) }, gc.clickLocation);
 
 				if (draw_guide) {
 					DrawRectangleLinesEx(tl.bg, 10.0f, RED);
@@ -204,7 +175,7 @@ int main()
 			{
 
 				DrawTexture(ga.myBgTextureOverlay, tl.bg_o.x, tl.bg_o.y, WHITE);
-				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, tl.bg.y + 10.0f }, gc.clickLocation);
+				gA::backButton.draw({ (tl.bg.x) * 1.04f, tl.bg.y + 10.0f }, gc.clickLocation);
 
 				DrawTexture(ga.txt_ChooseImage_texture, tl.bg_o.x + (tl.bg_o.width / 2) - (ga.txt_ChooseImage_texture.width / 2.0f), tl.bg_o.y - (ga.txt_ChooseImage_texture.height / 2.0f), WHITE);
 
@@ -247,15 +218,21 @@ int main()
 
 			case Scene::CROP_SLICE_IMAGE_SCENE: 
 			{
-				gA::backButton.draw({ (gc.currentWindowWidth - ga.myBgTexture.width) / 2 + 10.0f, tl.bg.y + 10.0f }, gc.clickLocation);
+				DrawTexture(ga.myBgTextureOverlay, tl.bg_o.x, tl.bg_o.y, WHITE);
+				gA::backButton.draw({ (tl.bg.x) * 1.04f, tl.bg.y + 10.0f }, gc.clickLocation);
+				gA::startButton.draw({ (tl.bg.x + tl.bg.width) * 0.9f, tl.bg.y + 10.0f }, gc.clickLocation);
+
 				if (ga.myPuzzleTexture.id != 0) {
 					// Draw texture in the middle of the screen
-					DrawTexture(ga.myPuzzleTexture, (gc.currentWindowWidth - ga.myPuzzleTexture.width) / 2, (gc.currentWindowHeight - ga.myPuzzleTexture.height) / 2, WHITE);
+					DrawTexture(ga.myPuzzleTexture, tl.p_image.x, tl.p_image.y, WHITE);
 				}
 				gc.puz1hover = false;
 				gc.puz2hover = false;
 				gc.puz3hover = false;
 
+				for (const auto& r : rec3b3) {
+					DrawRectangleLinesEx(r, 1.0f, BLACK);
+				}
 			} break;
 		}
 

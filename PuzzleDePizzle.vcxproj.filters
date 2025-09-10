@@ -77,6 +77,30 @@
     <Image Include="Resources\Images\back_button_down.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Images\start_button_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\start_button_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_aud_disabled.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_aud_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_aud_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_music_disabled.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_music_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\tog_music_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Random.h">

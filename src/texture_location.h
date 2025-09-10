@@ -16,6 +16,9 @@ struct TextureLoc
 	Rectangle icon2;
 	Rectangle icon3;
 	
+	// Puzzle Image
+	Rectangle p_image;
+
 	// Other shapes
 	Rectangle icon1sel;
 	Rectangle icon2sel;

@@ -43,9 +43,12 @@ void LoadAssets();
 void UnloadAssets();
 
 namespace gA {
-	extern Button startButton;
+	extern Button playButton;
 	extern Button exitButton;
 	extern Button backButton;
+
+
+	extern Button startButton;
 
 	void LoadClassedAssets();
 }

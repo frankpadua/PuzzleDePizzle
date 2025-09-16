@@ -133,9 +133,10 @@
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\FileDialog\tinyfiledialogs.c" />
-    <ClCompile Include="src\ImageCrop.cpp" />
-    <ClCompile Include="src\image_manipulate.cpp" />
+    <ClCompile Include="src\image_slice.cpp" />
+    <ClCompile Include="src\image_puzzle.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\scene_management.cpp" />
     <ClCompile Include="src\texture_location.cpp" />
     <ClCompile Include="src\transform.cpp" />
   </ItemGroup>
@@ -147,12 +148,18 @@
     <Image Include="Resources\Images\bgOverlay.png" />
     <Image Include="Resources\Images\exit_button_down.png" />
     <Image Include="Resources\Images\exit_button_up.png" />
+    <Image Include="Resources\Images\folder_down.png" />
+    <Image Include="Resources\Images\folder_up.png" />
     <Image Include="Resources\Images\jerry.jpg" />
     <Image Include="Resources\Images\mayon.jpg" />
     <Image Include="Resources\Images\play_button_down.png" />
     <Image Include="Resources\Images\play_button_up.png" />
+    <Image Include="Resources\Images\plus_down.png" />
+    <Image Include="Resources\Images\plus_up.png" />
     <Image Include="Resources\Images\start_button_down.png" />
     <Image Include="Resources\Images\start_button_up.png" />
+    <Image Include="Resources\Images\sub_down.png" />
+    <Image Include="Resources\Images\sub_up.png" />
     <Image Include="Resources\Images\tog_aud_disabled.png" />
     <Image Include="Resources\Images\tog_aud_down.png" />
     <Image Include="Resources\Images\tog_aud_up.png" />
@@ -165,9 +172,10 @@
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\FileDialog\tinyfiledialogs.h" />
-    <ClInclude Include="src\ImageCrop.h" />
-    <ClInclude Include="src\image_manipulate.h" />
+    <ClInclude Include="src\image_slice.h" />
+    <ClInclude Include="src\image_puzzle.h" />
     <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\scene_management.h" />
     <ClInclude Include="src\texture_location.h" />
     <ClInclude Include="src\transform.h" />
   </ItemGroup>

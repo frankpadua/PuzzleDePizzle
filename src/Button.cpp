@@ -92,9 +92,9 @@ Image Button::buttonManipulate(Image* buttonImage, float bgWidth, float bgHeight
 		maxWidth = bgWidth / 7.8f;
 		maxHeight = bgHeight / 7.8f;
 	}
-	else {
-		maxWidth = bgWidth / 11.9f;
-		maxHeight = bgHeight / 11.9f;
+	else if (buttonSize == SMALL) {
+		maxWidth = bgWidth / 9.0f;
+		maxHeight = bgHeight / 9.0f;
 	}
 
 	float scaleX = maxWidth / Width;

@@ -8,9 +8,12 @@ Assets ga{};
 namespace gA {
 	Button playButton;
 	Button exitButton;
+
 	Button backButton;
+	Button folderButton;
 
-
+	Button plusButton;
+	Button subButton;
 	Button startButton;
 }
 
@@ -59,9 +62,12 @@ void gA::LoadClassedAssets()
 {
 	playButton.load(LoadImage("Resources/Images/play_button_up.png"), LoadImage("Resources/Images/play_button_down.png"), MEDIUM);
 	exitButton.load(LoadImage("Resources/Images/exit_button_up.png"), LoadImage("Resources/Images/exit_button_down.png"), MEDIUM);
+
 	backButton.load(LoadImage("Resources/Images/back_button_up.png"), LoadImage("Resources/Images/back_button_down.png"), MEDIUM);
+	folderButton.load(LoadImage("Resources/Images/folder_up.png"), LoadImage("Resources/Images/folder_down.png"), MEDIUM);
 
-
+	plusButton.load(LoadImage("Resources/Images/plus_up.png"), LoadImage("Resources/Images/plus_down.png"), MEDIUM);
+	subButton.load(LoadImage("Resources/Images/sub_up.png"), LoadImage("Resources/Images/sub_down.png"), MEDIUM);
 	startButton.load(LoadImage("Resources/Images/start_button_up.png"), LoadImage("Resources/Images/start_button_down.png"), MEDIUM);
 }
 
@@ -101,11 +107,16 @@ void UnloadAssets()
 	gA::playButton.unloadTexture();
 	gA::exitButton.unloadImage();
 	gA::exitButton.unloadTexture();
+
 	gA::backButton.unloadImage();
 	gA::backButton.unloadTexture();
-	
+	gA::folderButton.unloadImage();
+	gA::folderButton.unloadTexture();
 
-
+	gA::plusButton.unloadImage();
+	gA::plusButton.unloadTexture();
+	gA::subButton.unloadImage();
+	gA::subButton.unloadTexture();
 	gA::startButton.unloadImage();
 	gA::startButton.unloadTexture();
 }

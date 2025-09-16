@@ -110,8 +110,12 @@ void transformTextures()
 			// Buttons
 			gA::playButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
 			gA::exitButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, LARGE);
-			gA::backButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
 
+			gA::backButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
+			gA::folderButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
+
+			gA::plusButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, SMALL);
+			gA::subButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, SMALL);
 			gA::startButton.scaled(ga.myBgTexture.width, ga.myBgTexture.height, MEDIUM);
 
 			// Then assign to current window resolution

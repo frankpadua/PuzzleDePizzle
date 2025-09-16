@@ -18,7 +18,7 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImageCrop.cpp">
+    <ClCompile Include="src\image_slice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\FileDialog\tinyfiledialogs.c">
@@ -27,7 +27,7 @@
     <ClCompile Include="src\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\image_manipulate.cpp">
+    <ClCompile Include="src\image_puzzle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\assets.cpp">
@@ -40,6 +40,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\texture_location.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene_management.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -101,12 +104,30 @@
     <Image Include="Resources\Images\tog_music_up.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Resources\Images\folder_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\folder_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\plus_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\plus_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\sub_down.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Images\sub_up.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ImageCrop.h">
+    <ClInclude Include="src\image_slice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\FileDialog\tinyfiledialogs.h">
@@ -115,7 +136,7 @@
     <ClInclude Include="src\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\image_manipulate.h">
+    <ClInclude Include="src\image_puzzle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\config.h">
@@ -128,6 +149,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\texture_location.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene_management.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

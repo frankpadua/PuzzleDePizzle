@@ -124,9 +124,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Random.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\image_slice.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,4 +1,5 @@
 #include "assets.h"
+#include "image_puzzle.h"
 #include "scene_management.h"
 #include "texture_location.h"
 #include "transform.h"
@@ -9,12 +10,6 @@
 #include <typeinfo>
 #include <vector>
 #include <raylib.h>
-
-//void theImagePuzzle(Image& myPuzzleImage, const Image& myImageChoosen, Texture& myPuzzleTexture)
-//{
-//	myPuzzleImage = ImageCopy(myImageChoosen);
-//	myPuzzleTexture = LoadTextureFromImage(imageManipulate(&myPuzzleImage, IMAGE_AS_PUZZLE));
-//}
 
 int main()
 {
@@ -59,7 +54,6 @@ int main()
 
 		// Resize the texture and maintain quality if the screen dimension is updated
 		transformTextures();
-
 
 		// DISPLAY EVERYTHING HERE NOW
 		BeginDrawing();
@@ -138,6 +132,22 @@ int main()
 					DrawRectangleLinesEx(r, 1.0f, GRAY);
 				}
 
+			} break;
+
+			case Scene::BEGIN_PLAY_SCENE:
+			{
+				DrawTexture(ga.myBgTextureOverlay, tl.bg_o.x, tl.bg_o.y, WHITE);
+
+				for (int i{ 0 }; i < std::size(sl.puz); ++i) {
+					DrawTexture(Puzzle::puzzleTexture[i], 
+								sl.rec[i].x, 
+								sl.rec[i].y,
+								WHITE);
+				}
+
+				for (const auto& r : sl.rec) {
+					DrawRectangleLinesEx(r, 1.0f, GRAY);
+				}
 			} break;
 		}
 

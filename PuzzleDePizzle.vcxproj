@@ -174,7 +174,6 @@
     <ClInclude Include="src\FileDialog\tinyfiledialogs.h" />
     <ClInclude Include="src\image_slice.h" />
     <ClInclude Include="src\image_puzzle.h" />
-    <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\scene_management.h" />
     <ClInclude Include="src\texture_location.h" />
     <ClInclude Include="src\transform.h" />

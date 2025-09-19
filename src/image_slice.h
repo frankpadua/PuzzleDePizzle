@@ -8,6 +8,7 @@
 struct Slice {
 	int slice{ 3 };
 	std::vector<Rectangle> rec;
+	std::vector<Rectangle> puz;
 
 	void applySlice();
 };

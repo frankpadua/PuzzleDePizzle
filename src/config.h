@@ -8,7 +8,7 @@ inline constexpr int screenWidth{ 1280 };
 
 // Fonts
 inline constexpr float fontSizeLarge{ 70.0f };
-inline constexpr float fontSizeSmall{ 50.0f };
+inline constexpr float fontSizeSmall{ 30.0f };
 inline constexpr float fontSpacing{ 2.0f };
 
 // Paths
@@ -19,7 +19,7 @@ inline constexpr const char* FILTER[] = { "*.png", "*.jpg", "*.bpm" };
 enum class Scene {
 	LOADING_SCENE,
 	MENU_SCENE,						// Display menu (Play, Exit)
-	BEGIN_PLAY_SCENE,				// Begin playing the puzzle (all animation included)
+	BEGIN_PLAY_SCENE,				// Begin playing the puzzle 
 	CHOOSE_IMAGE_SCENE,				// Show scene on choosing image (built-in, custom)
 	CROP_SLICE_IMAGE_SCENE,			// Square, Portrait, Landscape (3x3, 4x4, 5x5, ... 3x4, 3x5, 3x6, ... etc)
 };

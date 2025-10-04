@@ -31,44 +31,104 @@ void Slice::applySlice()
         return;
     }
 
-    // 3 = 0.333f
+    // 3 = 0.33333f
     if (sl.slice == 3) {
-        sl.rec = GenerateGrid(3, 3, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.33333f), (tl.p_image.height * 0.33333f));
-        sl.puz = GenerateGrid(3, 3, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.33333f), (ga.myPuzzleImage.height * 0.33333f));
+        sl.prec_slice = 0.33333f;
+        sl.rec = GenerateGrid(3, 3, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+        sl.puz = GenerateGrid(3, 3, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
     // 4 = 0.25f
 	if (sl.slice == 4) {
-		sl.rec = GenerateGrid(4, 4, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.25f), (tl.p_image.height * 0.25f));
-		sl.puz = GenerateGrid(4, 4, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.25f), (ga.myPuzzleImage.height * 0.25f));
+		sl.prec_slice = 0.25f;
+		sl.rec = GenerateGrid(4, 4, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(4, 4, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
     // 5 = 0.20f
 	if (sl.slice == 5) {
-		sl.rec = GenerateGrid(5, 5, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.20f), (tl.p_image.height * 0.20f));
-		sl.puz = GenerateGrid(5, 5, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.20f), (ga.myPuzzleImage.height * 0.20f));
+		sl.prec_slice = 0.20f;
+		sl.rec = GenerateGrid(5, 5, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(5, 5, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
-    // 6 = 0.166f
+    // 6 = 0.16666f
 	if (sl.slice == 6) {
-		sl.rec = GenerateGrid(6, 6, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.16666f), (tl.p_image.height * 0.16666f));
-		sl.puz = GenerateGrid(6, 6, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.16666f), (ga.myPuzzleImage.height * 0.16666f));
+		sl.prec_slice = 0.16666f;
+		sl.rec = GenerateGrid(6, 6, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(6, 6, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
-    // 7 = 0.1428f
+    // 7 = 0.1428571f
 	if (sl.slice == 7) {
-		sl.rec = GenerateGrid(7, 7, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.1428571f), (tl.p_image.height * 0.1428571f));
-		sl.puz = GenerateGrid(7, 7, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.1428571f), (ga.myPuzzleImage.height * 0.1428571f));
+		sl.prec_slice = 0.1428571f;
+		sl.rec = GenerateGrid(7, 7, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(7, 7, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
     // 8 = 0.125f
 	if (sl.slice == 8) {
-		sl.rec = GenerateGrid(8, 8, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.125f), (tl.p_image.height * 0.125f));
-		sl.puz = GenerateGrid(8, 8, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.125f), (ga.myPuzzleImage.height * 0.125f));
+		sl.prec_slice = 0.125f;
+		sl.rec = GenerateGrid(8, 8, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(8, 8, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
-    // 9 = 0.111f
+    // 9 = 0.11111f
 	if (sl.slice == 9) {
-		sl.rec = GenerateGrid(9, 9, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.11111f), (tl.p_image.height * 0.11111f));
-		sl.puz = GenerateGrid(9, 9, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.11111f), (ga.myPuzzleImage.height * 0.11111f));
+		sl.prec_slice = 0.11111f;
+		sl.rec = GenerateGrid(9, 9, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(9, 9, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
     // 10 = 0.10f
 	if (sl.slice == 10) {
-		sl.rec = GenerateGrid(10, 10, tl.p_image.x, tl.p_image.y, (tl.p_image.width * 0.10f), (tl.p_image.height * 0.10f));
-		sl.puz = GenerateGrid(10, 10, 0.0f, 0.0f, (ga.myPuzzleImage.width * 0.10f), (ga.myPuzzleImage.height * 0.10f));
+        sl.prec_slice = 0.10f;
+		sl.rec = GenerateGrid(10, 10, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(10, 10, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+}
+
+void updateSlice()
+{
+    // 3 = 0.33333f
+    if (sl.slice == 3) {
+        sl.prec_slice = 0.33333f;
+        sl.rec = GenerateGrid(3, 3, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+        sl.puz = GenerateGrid(3, 3, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 4 = 0.25f
+	if (sl.slice == 4) {
+		sl.prec_slice = 0.25f;
+		sl.rec = GenerateGrid(4, 4, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(4, 4, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 5 = 0.20f
+	if (sl.slice == 5) {
+		sl.prec_slice = 0.20f;
+		sl.rec = GenerateGrid(5, 5, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(5, 5, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 6 = 0.16666f
+	if (sl.slice == 6) {
+		sl.prec_slice = 0.16666f;
+		sl.rec = GenerateGrid(6, 6, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(6, 6, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 7 = 0.1428571f
+	if (sl.slice == 7) {
+		sl.prec_slice = 0.1428571f;
+		sl.rec = GenerateGrid(7, 7, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(7, 7, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 8 = 0.125f
+	if (sl.slice == 8) {
+		sl.prec_slice = 0.125f;
+		sl.rec = GenerateGrid(8, 8, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(8, 8, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 9 = 0.11111f
+	if (sl.slice == 9) {
+		sl.prec_slice = 0.11111f;
+		sl.rec = GenerateGrid(9, 9, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(9, 9, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+    }
+    // 10 = 0.10f
+	if (sl.slice == 10) {
+        sl.prec_slice = 0.10f;
+		sl.rec = GenerateGrid(10, 10, tl.p_image.x, tl.p_image.y, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
+		sl.puz = GenerateGrid(10, 10, 0.0f, 0.0f, (ga.myPuzzleTexture.width * sl.prec_slice), (ga.myPuzzleTexture.height * sl.prec_slice));
     }
 }

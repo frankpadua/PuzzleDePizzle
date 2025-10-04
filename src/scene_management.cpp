@@ -14,6 +14,8 @@ void sceneFunctions()
 	if (gc.currentScene == Scene::CHOOSE_IMAGE_SCENE) {
 		// Scene 2-1 switch
 		if (gA::backButton.isPressed()) {
+			if (ga.myPuzzleTexture.id != 0)
+				UnloadTexture(ga.myPuzzleTexture);
 			gc.currentScene = Scene::MENU_SCENE;
 		}
 		// Scene 2-3 switch
@@ -61,6 +63,7 @@ void sceneFunctions()
 		// Scene 3-4 switch
 		if (gA::startButton.isPressed()) {
 			Puzzle::loadPuzzle(ga.myPuzzleImage, sl.puz);
+			Puzzle::finalizeLoad();
 			gc.currentScene = Scene::BEGIN_PLAY_SCENE;
 		}
 		// Scene 3 actions
@@ -74,8 +77,9 @@ void sceneFunctions()
 		sl.applySlice();
 	}
 
-	// SCENE 4
-	//if (gc.currentScene == Scene::BEGIN_PLAY_SCENE) {
-
-	//}
+	//SCENE 4
+	if (gc.currentScene == Scene::BEGIN_PLAY_SCENE) {
+		// update the grid everytime when window is resized
+		updateSlice();
+	}
 }

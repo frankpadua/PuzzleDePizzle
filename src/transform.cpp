@@ -65,8 +65,6 @@ Image imageManipulate(Image* myImage, ImageType imageType)
 
 	ImageResize(myImage, newWidth, newHeight);
 
-	std::cout << "THE IMAGE IS: " << myImage->width << 'x' << myImage->height << '\n';
-
 	return *myImage;
 }
 
@@ -78,9 +76,34 @@ void textureTransform(const Image& image, Texture2D& texture, ImageType imageTyp
 		}
 
 		Image temp = ImageCopy(image);
-		texture = LoadTextureFromImage(imageManipulate(&temp, imageType));
+		Image temp2 = imageManipulate(&temp, imageType);
+
+		texture = LoadTextureFromImage(temp2);
 		UnloadImage(temp);
 	}
+}
+
+// This is called everytime the window is resized
+void arrayTransform()
+{
+	Puzzle::arrGrid.clear();
+	Puzzle::txtTemp.clear();
+	Puzzle::arrGrid = GenerateGrid(Puzzle::gridSize, Puzzle::gridSize, 0.0f, 0.0f, ga.myPuzzleTexture.width * sl.prec_slice, ga.myPuzzleTexture.height * sl.prec_slice);
+
+	Image tmp = ImageCopy(ga.myPuzzleImage);
+	std::vector<Texture2D> testArr;
+	testArr.reserve(Puzzle::puzzleTexture.size());
+
+	for (const auto& s : Puzzle::arrGrid)
+		testArr.push_back(LoadTextureFromImage(ImageFromImage(imageManipulate(&tmp, IMAGE_AS_PUZZLE), s)));
+
+	Puzzle::txtTemp.resize(Puzzle::puzzleTexture.size());
+	for (int i{ 0 }; i < Puzzle::puzzleTexture.size(); ++i) {
+		Puzzle::txtTemp[i] = testArr[Puzzle::puz_guide[i] - 1];
+	}
+
+	// SWAPP
+	Puzzle::puzzleTexture.swap(Puzzle::txtTemp);
 }
 
 void transformTextures()
@@ -90,6 +113,7 @@ void transformTextures()
 		{
 			// The choosed image
 			textureTransform(ga.myPuzzleImage, ga.myPuzzleTexture, IMAGE_AS_PUZZLE);
+			arrayTransform();
 
 			// BG and BG Overlay
 			textureTransform(ga.myBgImage, ga.myBgTexture, IMAGE_AS_BG);

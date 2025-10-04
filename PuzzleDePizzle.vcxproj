@@ -133,8 +133,8 @@
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\FileDialog\tinyfiledialogs.c" />
-    <ClCompile Include="src\image_slice.cpp" />
     <ClCompile Include="src\image_puzzle.cpp" />
+    <ClCompile Include="src\image_slice.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\scene_management.cpp" />
     <ClCompile Include="src\texture_location.cpp" />
@@ -172,8 +172,8 @@
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\FileDialog\tinyfiledialogs.h" />
-    <ClInclude Include="src\image_slice.h" />
     <ClInclude Include="src\image_puzzle.h" />
+    <ClInclude Include="src\image_slice.h" />
     <ClInclude Include="src\scene_management.h" />
     <ClInclude Include="src\texture_location.h" />
     <ClInclude Include="src\transform.h" />

@@ -178,8 +178,12 @@ int main()
 			{
 				DrawTexture(ga.myBgTextureOverlay, tl.bg_o.x, tl.bg_o.y, WHITE);
 
+				// Puzzle blank space
+				DrawRectangle(tl.p_image.x, tl.p_image.y, tl.p_image.width, tl.p_image.height, BLACK);
+				// The puzzle image
 				for (int i = 0; i < (int)Puzzle::puzzleTexture.size(); ++i) {
 				    if (i == Puzzle::blankIndex) continue; // **important**
+					// Draw the tiles
 				    DrawTexture(Puzzle::puzzleTexture[i], sl.rec[i].x, sl.rec[i].y, WHITE);
 					// For tile number guide purposes
 					if (draw_guide) {
@@ -193,10 +197,8 @@ int main()
 						DrawTextEx(ga.myFontSmall, guide_text(Puzzle::puz_guide[i]), {sl.rec[i].x, sl.rec[i].y}, fontSizeSmall, fontSpacing, BLACK);
 					}
 				}
-
-				for (const auto& r : sl.rec) {
-					DrawRectangleLinesEx(r, 1.0f, GRAY);
-				}
+				for (const auto& r : sl.rec)
+					DrawRectangleLinesEx(r, 1.0f, BLACK);
 
 			} break;
 		}
